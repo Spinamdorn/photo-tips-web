@@ -15,6 +15,10 @@
   background: none;
 }
 
+.lesson button {
+  background: none;
+}
+
 .lesson-type li {
   background: none;
   display: inline-block;
