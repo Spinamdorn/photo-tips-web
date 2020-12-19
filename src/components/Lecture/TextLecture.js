@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LessonSubpart from "./LessonSubpart";
-import lectureData from "../data/lectureData";
+import lectureData from "../../data/lectureData";
 
 const lessonComponents = lectureData.map((subpart) => {
   return <LessonSubpart key={subpart.id} text={subpart.text} img={subpart.img} />;

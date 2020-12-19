@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Header from "./components/Header";
-import Menu from "./components/Menu";
-import Login from "./components/Login";
-import Footer from "./components/Footer";
-import Lecture from "./components/Lecture";
+import Header from "./components/Main/Header";
+import Login from "./components/Main/Login";
+import Footer from "./components/Main/Footer";
+import Menu from "./components/Menu/Menu";
+import Lecture from "./components/Lecture/Lecture";
 import "./App.css";
 import "./css/lesson.css";
 import "./css/menu.css";
@@ -13,7 +13,6 @@ function App() {
   return (
     <div className='App'>
       <Header />
-
       <Switch>
         <Route exact path='/' component={Menu} />
         <Route exact path='/lecture' component={Lecture} />
