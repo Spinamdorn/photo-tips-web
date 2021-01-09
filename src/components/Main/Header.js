@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../images/Logo.svg";
-
 function Header() {
   return (
     <header>
       <Link to='/'>
-        <img className='logo' src={logo} alt='logo'></img>
+        <img className='logo' src='../../images/Logo.svg' alt='logo'></img>
       </Link>
       <nav>
         <ul className='nav-menu'>
@@ -20,7 +18,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to='/lecture'>
+            <Link to='/gallery'>
               <button className='btn-text-icon'>
                 <div className='btn-icon gallery'></div>
                 Галерея

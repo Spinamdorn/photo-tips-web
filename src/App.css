@@ -45,6 +45,10 @@ button {
   cursor: pointer;
 }
 
+button.icon {
+  border: none;
+}
+
 nav li button {
   border: none;
   height: 50px;
@@ -145,29 +149,12 @@ a:hover {
 }
 
 .container {
-  width: 992px;
+  width: 696px;
   margin: 64px auto;
 }
 
 div {
   background: none;
-}
-
-h1.article {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 130%;
-  letter-spacing: 0.04em;
-  background: none;
-  margin-bottom: 16px;
-}
-
-p.article {
-  font-family: "Fira Sans", sans-serif;
-  font-size: 16px;
-  background: none;
-  line-height: 150%;
 }
 
 .frame {
@@ -243,14 +230,34 @@ li a {
   text-decoration: none;
 }
 
+p,
+h1,
+h2,
+h3 {
+  background: none;
+}
+h1.article {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 130%;
+  margin-bottom: 16px;
+}
+
+p.article {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 150%;
+}
+
 h1.UI {
   font-family: "PTRootUIWebMedium", sans-serif;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 31px;
   letter-spacing: 0.04em;
   text-align: left;
-  background: none;
   padding-bottom: 16px;
 }
 
@@ -261,26 +268,43 @@ h2.UI {
   line-height: 130%;
   letter-spacing: 0.15px;
   text-align: left;
-  background: none;
   padding-bottom: 8px;
 }
 
 p.UI {
   font-family: "PTRootUIWebRegular", sans-serif;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24px;
-  letter-spacing: 0em;
+  letter-spacing: 0.02em;
   text-align: left;
-  background: none;
 }
 
 p.UI.priority-2 {
   font-family: "PTRootUIWebRegular", sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  background: none;
+}
+p.UI.sub-t1 {
+  font-family: "PTRootUIWebRegular", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: #282828;
+  margin-bottom: 16px;
+}
+p.UI.sub-t2 {
+  font-family: "PTRootUIWebRegular", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #282828;
+  margin-bottom: 8px;
 }

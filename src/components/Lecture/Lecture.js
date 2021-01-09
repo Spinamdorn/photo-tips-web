@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import LectureTitle from "./LectureTitle";
+import LectureContentHeader from "./LectureContentHeader";
+import LectureContentFooter from "./LectureContentFooter";
+import LectureAdditional from "./LectureAdditional";
 import TextLecture from "./TextLecture";
 import VideoLecture from "./VideoLecture";
 
@@ -20,6 +24,15 @@ export default class Lecture extends Component {
     this.handleClickText = this.handleClickText.bind(this);
   }
 
+  handleClickContentType(contentType) {
+    contentType = contentType.split("-")[0];
+    if (contentType === "video") {
+      this.handleClickVideo();
+    } else if (contentType === "text") {
+      this.handleClickText();
+    }
+  }
+
   handleClickVideo() {
     this.setState((state) => ({
       lectureType: LectureType.Video,
@@ -32,7 +45,7 @@ export default class Lecture extends Component {
     }));
   }
   componentDidMount() {
-    fetch("http://85.208.208.156:5000/api/module_entry?ModuleEntryId=3")
+    fetch("http://85.208.208.156:5000/api/module_entry?ModuleEntryId=1")
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -49,6 +62,7 @@ export default class Lecture extends Component {
   }
   render() {
     const lectureType = this.state.lectureType;
+    let additionalInfo = this.state.lessonInfo.additionalInfo;
     let content;
     if (lectureType === LectureType.Text) {
       content = this.textContent();
@@ -57,66 +71,16 @@ export default class Lecture extends Component {
     }
     return (
       <div className='container'>
-        <section className='info-card frame'>
-          <h1 className='article'> {this.state.lessonInfo.name} </h1>{" "}
-          <p className='article'>{this.state.lessonInfo.description}</p>{" "}
-        </section>{" "}
+        <LectureTitle value={this.state.lessonInfo} />
         <article className='lesson frame'>
-          <header>
-            <Link to='/' style={{ textDecoration: "none", background: "none" }}>
-              <button className='btn-text-icon'>
-                <div className='btn-icon course'> </div>К курсу
-              </button>
-            </Link>
-            <ul className='lesson-type'>
-              <li>
-                <button onClick={this.handleClickVideo}>
-                  <div
-                    className={`btn-icon video-lesson ${
-                      lectureType === LectureType.Video ? "active" : ""
-                    }`}>
-                    {" "}
-                  </div>
-                </button>
-              </li>
-              <li>
-                <button onClick={this.handleClickText}>
-                  <div
-                    className={`btn-icon text-lesson ${
-                      lectureType === LectureType.Text ? "active" : ""
-                    }`}>
-                    {" "}
-                  </div>
-                </button>
-              </li>
-            </ul>
-          </header>{" "}
+          <LectureContentHeader
+            value={lectureType}
+            onClick={(i) => this.handleClickContentType(i)}
+          />
           {content}
         </article>{" "}
-        <div className='nav-footer'>
-          <ul>
-            <li className='previous-lesson'>
-              <Link to='/lecture'>
-                <button className='btn-text-icon'>
-                  <div className='btn-icon'> </div>
-                  Предыдущий урок
-                </button>
-              </Link>
-            </li>
-            <li className='next-lesson'>
-              <Link to='/lecture'>
-                <button className='btn-text-icon'>
-                  Следующий урок
-                  <div className='btn-icon'> </div>
-                </button>
-              </Link>
-            </li>{" "}
-          </ul>{" "}
-        </div>{" "}
-        <div className='frame info-card additional-info'>
-          <h1 className='article'> Дополнительная информация </h1>{" "}
-          <p className='UI'>{this.state.lessonInfo.additionalInfo}</p>
-        </div>{" "}
+        <LectureContentFooter />
+        {additionalInfo ? <LectureAdditional additionalInfo={additionalInfo} /> : ""}
       </div>
     );
   }
