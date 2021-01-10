@@ -1,21 +1,21 @@
 @font-face {
   font-family: "PTRootUIWebMedium";
-  src: url("./Fonts/PT%20Root%20UI_Medium.eot");
-  src: url("./Fonts/PT%20Root%20UI_Medium.eot?#iefix") format("embedded-opentype"),
-    url("./Fonts/PT%20Root%20UI_Medium.woff2") format("woff2"),
-    url("./Fonts/PT%20Root%20UI_Medium.woff") format("woff"),
-    url("./Fonts/PT%20Root%20UI_Medium.ttf") format("truetype");
+  src: url("../Fonts/PT%20Root%20UI_Medium.eot");
+  src: url("../Fonts/PT%20Root%20UI_Medium.eot?#iefix") format("embedded-opentype"),
+    url("../Fonts/PT%20Root%20UI_Medium.woff2") format("woff2"),
+    url("../Fonts/PT%20Root%20UI_Medium.woff") format("woff"),
+    url("../Fonts/PT%20Root%20UI_Medium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "PTRootUIWebRegular";
-  src: url("./Fonts/PT%20Root%20UI_Regular.eot");
-  src: url("./Fonts/PT%20Root%20UI_Regular.eot?#iefix") format("embedded-opentype"),
-    url("./Fonts/PT%20Root%20UI_Regular.woff2") format("woff2"),
-    url("./Fonts/PT%20Root%20UI_Regular.woff") format("woff"),
-    url("./Fonts/PT%20Root%20UI_Regular.ttf") format("truetype");
+  src: url("../Fonts/PT%20Root%20UI_Regular.eot");
+  src: url("../Fonts/PT%20Root%20UI_Regular.eot?#iefix") format("embedded-opentype"),
+    url("../Fonts/PT%20Root%20UI_Regular.woff2") format("woff2"),
+    url("../Fonts/PT%20Root%20UI_Regular.woff") format("woff"),
+    url("../Fonts/PT%20Root%20UI_Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -43,6 +43,7 @@ header {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 button.icon {
@@ -87,12 +88,12 @@ button.btn-text-icon {
   width: 24px;
   height: 24px;
   margin: 6px 5px;
-  background: url(images/icon_web.svg) no-repeat;
+  background: url(../images/icon_web.svg) no-repeat;
   cursor: pointer;
 }
 
 .icon {
-  background: url(images/icon_web.svg) no-repeat;
+  background: url(../images/icon_web.svg) no-repeat;
   width: 24px;
   height: 24px;
 }
@@ -307,4 +308,8 @@ p.UI.sub-t2 {
   letter-spacing: 0.1px;
   color: #282828;
   margin-bottom: 8px;
+}
+p.UI.caption {
+  font-size: 12px;
+  line-height: 16px;
 }

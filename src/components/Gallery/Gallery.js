@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GalleryRow from "./GalleryRow";
 import GalleryPhotoZoom from "./GalleryPhotoZoom";
 import galleryData from "../../data/galleryData";
+import "../../css/gallery.css";
 export default class Gallery extends Component {
   constructor() {
     super();
@@ -17,7 +18,7 @@ export default class Gallery extends Component {
     };
     this.handleClickOpenPhoto = this.handleClickOpenPhoto.bind(this);
     this.handleClickClosePhoto = this.handleClickClosePhoto.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    // this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   //   setCurrent(id) {

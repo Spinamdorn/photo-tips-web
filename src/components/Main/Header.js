@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
+  var btnValue = props.isLogin ? "Аккаунт" : "Войти";
   return (
     <header>
       <Link to='/'>
@@ -28,8 +29,8 @@ function Header() {
         </ul>
       </nav>
       <div className='log_in'>
-        <Link to='/login'>
-          <button>Войти</button>
+        <Link to='/account'>
+          <button>{btnValue}</button>
         </Link>
       </div>
     </header>
