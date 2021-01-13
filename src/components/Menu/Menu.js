@@ -1,31 +1,50 @@
 import React, { Component } from "react";
 import MenuModule from "./MenuModule";
+import "../../css/menu.css";
 
 export default class Menu extends Component {
+  constructor() {
+    super();
+    this.state = {
+      module: null,
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://85.208.208.156:5000/api/module/listAllIn")
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          module: data,
+        });
+      });
+  }
+
   render() {
+    var modules = this.state.module;
+    if (!modules) {
+      return <div></div>;
+    }
+    const moduleContent = modules.map((subpart) => {
+      return (
+        <li>
+          <MenuModule key={subpart.id} module={subpart} />
+        </li>
+      );
+    });
     return (
-      <div className='container'>
+      <div className='container table-of-contents'>
         <div className='last-used-module'>
           <h1 className='UI'>Продолжить обучение</h1>
           <div className='frame'>
-            <MenuModule key='0' />
+            <MenuModule key={-1} module={this.state.module[0]} />
           </div>
         </div>
 
         <section className='all-modules'>
           <h1 className='UI'>Модули</h1>
           <div className='frame'>
-            <ul>
-              <li>
-                <MenuModule key='1' />
-              </li>
-              <li>
-                <MenuModule key='2' />
-              </li>
-              <li>
-                <MenuModule key='3' />
-              </li>
-            </ul>
+            <ul>{moduleContent}</ul>
           </div>
         </section>
       </div>

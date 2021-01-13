@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "../../css/login.css";
 
 async function loginUser(credentials) {
   var value = "?Email=" + credentials["username"] + "&Password=" + credentials["password"];
@@ -10,18 +9,13 @@ async function loginUser(credentials) {
       "Content-Type": "text/plain",
     },
   });
-  console.log(response);
   let res = response.text();
-  if (!response) {
-    console.log("User not found");
-    return null;
-  }
   return res;
 }
 
-export default function Login({ setToken }, props) {
+export default function Login({ setToken, onClick }) {
   // export default function Login(props) {
-  console.log(props.name);
+  // console.log(props.name);
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const handleSubmit = async (e) => {
@@ -37,7 +31,7 @@ export default function Login({ setToken }, props) {
   return (
     <div className='login container frame'>
       <form onSubmit={handleSubmit}>
-        <h1 className='UI'>Вход {props.name}</h1>
+        <h1 className='UI'>Вход</h1>
         <input
           type='text'
           name='email'
@@ -54,20 +48,20 @@ export default function Login({ setToken }, props) {
           <p className='UI caption'>Забыли пароль?</p>
         </button>
         <input type='submit' value='Войти' />
+        <div className='social'>
+          <div className='hr left'></div>
+          <p className='UI caption'>Войти с помощью</p>
+          <div className='hr right'></div>
+        </div>
+        <button className='google btn-icon'></button>
+        <p className='UI caption'>
+          Нет аккаунта?
+          <br />
+          <button className='sign-up' onClick={onClick}>
+            Зарегистрируйтесь!
+          </button>
+        </p>
       </form>
-      <div className='social'>
-        <div className='hr left'></div>
-        <p className='UI caption'>Войти с помощью</p>
-        <div className='hr right'></div>
-      </div>
-      <button className='google btn-icon'></button>
-      <p className='UI caption'>
-        Нет аккаунта?
-        <br />
-        <button className='sign-up' onClick={props.onClick}>
-          Зарегистрируйтесь!
-        </button>
-      </p>
     </div>
   );
 }

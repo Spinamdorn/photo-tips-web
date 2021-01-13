@@ -1,3 +1,6 @@
+.container.table-of-contents {
+  width: 992px;
+}
 .module.close .full-description {
   display: none;
 }
