@@ -28,7 +28,7 @@ function App() {
       <Switch>
         <Route path='/gallery' component={Gallery} />
         <Route path='/account'>
-          <Account token={token} />
+          <Account token={token} setToken={setToken} />
         </Route>
         <Route path='/lecture/:lessonId'>
           <Lecture />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import LectureTitle from "./LectureTitle";
@@ -14,29 +14,21 @@ const LectureType = {
   Video: 2,
 };
 
-async function loadLesson(lessonId) {
-  var response = await fetch(
-    "http://85.208.208.156:5000/api/module_entry?ModuleEntryId=" + lessonId,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  if (response.ok) {
-    return await response.json();
-  } else {
-    alert("Ошибка HTTP: " + response.status);
-  }
-}
-
 function Lecture() {
   const { lessonId } = useParams();
   const [lectureType, setLectureType] = useState(LectureType.Text);
   const [lesson, setLesson] = useState({});
-  loadLesson(lessonId).then((data) => {
-    setLesson(data);
-  });
+
+  useEffect(() => {
+    async function fetchLesson() {
+      const response = await fetch(
+        "http://85.208.208.156:5000/api/module_entry?ModuleEntryId=" + lessonId
+      );
+      const json = await response.json();
+      setLesson(json);
+    }
+    fetchLesson();
+  }, [lessonId]);
 
   if (!lesson) {
     return (
