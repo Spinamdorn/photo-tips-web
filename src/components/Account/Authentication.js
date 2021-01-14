@@ -13,7 +13,6 @@ export default class Authentication extends Component {
   }
 
   handleClickMode() {
-    console.log("this button was clicked");
     this.setState((state) => ({
       isLoginMode: !this.state.isLoginMode,
     }));

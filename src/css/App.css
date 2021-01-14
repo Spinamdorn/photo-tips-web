@@ -41,6 +41,7 @@ header {
   list-style: none;
 }
 /* style the submit button */
+button.std,
 input[type="submit"] {
   background-color: #167bd9;
   cursor: pointer;
@@ -59,8 +60,9 @@ input[type="submit"] {
   letter-spacing: 0.03em;
   color: #f5f5f5;
 }
-
+button.std:hover,
 input[type="submit"]:hover {
+  color: #f5f5f5;
   background-color: #2a8fed;
 }
 

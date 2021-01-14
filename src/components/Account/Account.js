@@ -113,6 +113,11 @@ export default function Account({ token, setToken }) {
     e.preventDefault();
     fetchChangePassword();
   };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    document.location.reload();
+  };
   return (
     <div className='account container'>
       {isLoading ? (
@@ -120,11 +125,16 @@ export default function Account({ token, setToken }) {
       ) : (
         <div>
           <div className='frame main-info'>
-            <img src='../../images/user_photo.png' alt='User' />
-            <div>
-              <h2 className='UI'>{name + " " + surname}</h2>
-              <p className='UI email'>{email}</p>
+            <div className='right-side'>
+              <img src='../../images/user_photo.png' alt='User' />
+              <div>
+                <h2 className='UI'>{name + " " + surname}</h2>
+                <p className='UI email'>{email}</p>
+              </div>
             </div>
+            <button className='std logout' onClick={logout}>
+              Выйти из аккаунта
+            </button>
           </div>
           <div className='frame full-info'>
             <h2 className='UI'>Персональная информация</h2>
