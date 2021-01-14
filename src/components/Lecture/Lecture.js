@@ -45,36 +45,6 @@ function Lecture() {
       </div>
     );
   }
-
-  // handleClickContentType(contentType) {
-  //   contentType = contentType.split("-")[0];
-  //   if (contentType === "video") {
-  //     this.handleClickVideo();
-  //   } else if (contentType === "text") {
-  //     this.handleClickText();
-  //   }
-  // }
-
-  // handleClickVideo() {
-  //   this.setState((state) => ({
-  //     lectureType: LectureType.Video,
-  //   }));
-  // }
-
-  // handleClickText() {
-  //   this.setState((state) => ({
-  //     lectureType: LectureType.Text,
-  //   }));
-  // }
-
-  // videoContent() {
-  //   return <VideoLecture />;
-  // }
-
-  // textContent() {
-  //   return <TextLecture />;
-  // }
-
   let additionalInfo = lesson.additionalInfo;
   let content;
   if (lectureType === LectureType.Text) {

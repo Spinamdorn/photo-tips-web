@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const LessonStatus = {
@@ -8,19 +8,6 @@ const LessonStatus = {
 };
 
 function MenuModuleLesson(props) {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     lessonName: {},
-  //     lessonStatus: LessonStatus.notStarted,
-  //   };
-  //   this.handleClick = this.handleClick.bind(this);
-  // }
-  // handleClick() {
-  //   this.setState((state) => ({
-  //     lessonStatus: LessonStatus.inProgress,
-  //   }));
-  // }
   const [lessonStatus, setLessonStatus] = useState(LessonStatus.notStarted);
   const lesson = props.lesson;
   if (!lesson) {
