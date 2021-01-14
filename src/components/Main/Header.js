@@ -11,7 +11,7 @@ function Header(props) {
       <nav>
         <ul className='nav-menu'>
           <li>
-            <Link to='/lecture'>
+            <Link to='/lecture/1'>
               <button className='btn-text-icon'>
                 <div className='btn-icon course'></div>
                 Курс

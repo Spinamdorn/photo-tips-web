@@ -57,6 +57,10 @@
   align-items: center;
 }
 
+.main-info p {
+  max-width: 620px;
+}
+
 .icon.module-status {
   margin-right: 26px;
 }
