@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MenuModuleLesson from "./MenuModuleLesson";
 
 const ModuleStatus = {
@@ -6,15 +6,7 @@ const ModuleStatus = {
   inProgress: 2,
   finish: 3,
 };
-// constructor(props) {
-//   super(props);
-//   this.state = {
-//     module: {},
-//     moduleStatus: ModuleStatus.notStarted,
-//     isOpen: false,
-//   };
-//   this.handleClick = this.handleClick.bind(this);
-// }
+
 function MenuModule(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [moduleStatus, setModuleStatus] = useState(ModuleStatus.notStarted);
