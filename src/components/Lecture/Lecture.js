@@ -58,11 +58,12 @@ function Lecture() {
       <article className='lesson frame'>
         <LectureContentHeader
           value={lectureType}
-          // onClick={(i) => this.handleClickContentType(i)}
+          onClickText={() => setLectureType(LectureType.Text)}
+          onClickVideo={() => setLectureType(LectureType.Video)}
         />
         {content}
       </article>{" "}
-      <LectureContentFooter />
+      <LectureContentFooter lessonId={lessonId} />
       {additionalInfo ? <LectureAdditional additionalInfo={additionalInfo} /> : ""}
     </div>
   );

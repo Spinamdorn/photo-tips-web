@@ -16,7 +16,7 @@ function LectureContentHeader(props) {
       </Link>
       <ul className='lesson-type'>
         <li>
-          <button id='video-lesson' onClick={(e) => props.onClick(e.target.id)}>
+          <button onClick={props.onClickVideo}>
             <div
               id='video-lesson-1'
               className={`btn-icon video-lesson ${
@@ -25,7 +25,7 @@ function LectureContentHeader(props) {
           </button>
         </li>
         <li>
-          <button id='text-lesson' onClick={(e) => props.onClick(e.target.id)}>
+          <button id='text-lesson' onClick={props.onClickText}>
             <div
               id='text-lesson-1'
               className={`btn-icon text-lesson ${

@@ -1,13 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import LessonImg from "./LessonImg";
+import LessonSubpartText from "./LessonSubpartText";
+import LessonSubpartVideo from "./LessonSubpartVideo";
 
-export default class LessonSubpart extends Component {
-  render() {
-    return (
-      <div className='lesson-subpart'>
-        <p className='article'>{this.props.text}</p>
-        {this.props.img ? <LessonImg value={this.props.img} /> : ""}
-      </div>
-    );
+export default function LessonSubpart({ type, content }) {
+  var component;
+  if (type === "Video") {
+    component = <LessonSubpartVideo content={content} />;
+  } else if (type === "Text") {
+    component = <LessonSubpartText content={content} />;
+  } else if (type === "Image") {
+    component = <LessonImg content={content} />;
   }
+  return <div className='lesson-subpart'>{component}</div>;
 }

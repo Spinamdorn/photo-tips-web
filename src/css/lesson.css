@@ -37,7 +37,7 @@
   margin-right: 72px;
 }
 
-.lesson-subpart {
+.lesson-subpart .lesson-img {
   display: flex;
   flex-direction: column;
   align-items: center;
