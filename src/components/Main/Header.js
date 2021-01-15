@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from "../../images/Logo.svg";
 function Header(props) {
   var btnValue = props.isLogin ? "Аккаунт" : "Войти";
   return (
     <header>
       <Link to='/'>
-        <img className='logo' src='../../images/Logo.svg' alt='logo'></img>
+        <img className='logo' src={logo} alt='logo'></img>
       </Link>
       <nav>
         <ul className='nav-menu'>

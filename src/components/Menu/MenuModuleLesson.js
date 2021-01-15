@@ -23,10 +23,7 @@ function MenuModuleLesson(props) {
   }
   return (
     <div>
-      <Link
-        to={"/lecture/" + lesson.id}
-        moduleEntryId={props.moduleNumber}
-        onClick={() => setLessonStatus(LessonStatus.inProgress)}>
+      <Link to={"/lecture/" + lesson.id} onClick={() => setLessonStatus(LessonStatus.inProgress)}>
         <p className={`element-number ${classStatus}`}>
           {props.moduleNumber}.{lesson.indexNumber}
         </p>

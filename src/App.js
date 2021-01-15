@@ -26,7 +26,9 @@ function App() {
       <Header isLogin={token} />
 
       <Switch>
-        <Route path='/gallery' component={Gallery} />
+        <Route path='/gallery'>
+          <Gallery token={token} />
+        </Route>
         <Route path='/account'>
           <Account token={token} setToken={setToken} />
         </Route>

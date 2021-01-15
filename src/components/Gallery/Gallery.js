@@ -1,122 +1,95 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import GalleryRow from "./GalleryRow";
 import GalleryPhotoZoom from "./GalleryPhotoZoom";
-import galleryData from "../../data/galleryData";
 import "../../css/gallery.css";
-export default class Gallery extends Component {
-  constructor() {
-    super();
-    this.state = {
-      moduleName: "Начало",
-      size: 5,
-      rowNumbers: [0],
-      photos: galleryData,
-      isOpenZoom: false,
-      currentImg: {},
-      prevImg: {},
-      nextImg: {},
-    };
-    this.handleClickOpenPhoto = this.handleClickOpenPhoto.bind(this);
-    this.handleClickClosePhoto = this.handleClickClosePhoto.bind(this);
-    // this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
 
-  //   setCurrent(id) {
-  //     currentImg = $("#" + id);
-  //     let prev = currentImg.prev();
-  //     let next = currentImg.next();
-  //     if (prev.length) {
-  //       prevImg = prev;
-  //     } else {
-  //       prevImg = $("#" + images.get(-1).id);
-  //     }
-  //     if (next.length) {
-  //       nextImg = next;
-  //     } else {
-  //       nextImg = $("#" + images.get(0).id);
-  //     }
-  //   }
+export default function Gallery({ token }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  var moduleName = "Ваши фотографии";
+  const size = 5;
+  const [rowNumbers, setRowNumbers] = useState([0]);
+  const [photos, setPhotos] = useState([]);
+  const [isOpenZoom, setIsOpenZoom] = useState(false);
+  const [currentImg, setCurrentImg] = useState(-2);
+  const [currentImgUrl, setCurrentImgUrl] = useState();
+  const filePath = "https://phototips.xyz/";
+  useEffect(() => {
+    async function fetchData() {
+      setIsError(false);
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://phototips.xyz/api/photo/listBy?UserToken=" + token);
+        const json = await response.json();
+        setPhotos(
+          json.map((i, j) => {
+            return { indexNumber: j, id: i.id, fileUrl: filePath + i.fileUrl };
+          })
+        );
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+      }
+    }
+    fetchData();
+  }, [token]);
 
-  //   openImg(clickedId) {
-  //     setCurrent(clickedId);
-  //     var source = currentImg.attr("src");
-  //     $("#modalImg").attr("src", source);
-  //     $(".modal").css("display", "block");
-  //   }
+  useEffect(() => {
+    var countPhotos = photos.length;
+    var countRows = Math.ceil(countPhotos / size);
+    var newRows = Array.apply(null, { length: countRows }).map(Number.call, Number);
+    setRowNumbers(newRows);
+  }, [photos]);
 
-  handleClickClosePhoto() {
-    this.setState({
-      isOpenZoom: false,
-      currentImg: null,
-      prevImg: null,
-      nextImg: null,
-    });
-  }
+  useEffect(() => {
+    if ((currentImg > -1) & (currentImg < photos.length)) {
+      setIsOpenZoom(true);
+      setCurrentImgUrl(photos[currentImg].fileUrl);
+    }
+  }, [currentImg, photos]);
 
-  handleClickOpenPhoto(id, imgUrl) {
-    this.setState({
-      isOpenZoom: true,
-      currentImg: imgUrl,
-    });
-  }
+  useEffect(() => {
+    if (!isOpenZoom) {
+      setCurrentImg(-2);
+    }
+  }, [isOpenZoom]);
 
-  //   handleKeyPress(event) {
-  //     console.log("key pressed");
-  // switch (event.key) {
-  //   case "Left": // IE/Edge specific value
-  //   case "ArrowLeft":
-  //     //   getPrevImg();
-  //     break;
-  //   case "Right": // IE/Edge specific value
-  //   case "ArrowRight":
-  //     //   getNextImg();
-  //     break;
-  //   case "Esc": // IE/Edge specific value
-  //   case "Escape":
-  //     console.log("esc pressed");
-  //     this.handleClickClosePhoto();
-  //     break;
-  //   default:
-  //     return; // Quit when this doesn't handle the key event.
-  // }
-  //   }
-
-  componentDidMount() {
-    var countPhotos = galleryData.length;
-    var countRows = Math.ceil(countPhotos / this.state.size);
-    var rowsNumbers = Array.apply(null, { length: countRows }).map(Number.call, Number);
-    this.setState((state) => ({
-      rowNumbers: rowsNumbers,
-    }));
-  }
-
-  render() {
-    var rowsComponents = this.state.rowNumbers.map((i) => {
-      return (
-        <GalleryRow
-          key={i}
-          rowNumber={i}
-          size={this.state.size}
-          photos={this.state.photos}
-          onClick={(i, j) => this.handleClickOpenPhoto(i, j)}
-        />
-      );
-    });
-
+  var rowsComponents = rowNumbers.map((i) => {
     return (
-      <div className='gallery container'>
-        <div className='frame gallery module last-used-module'>
-          <h1 className='UI'>{this.state.moduleName}</h1>
-          {rowsComponents}
-        </div>
-        {this.state.isOpenZoom ? (
-          <GalleryPhotoZoom
-            imgUrl={this.state.currentImg}
-            onClick={() => this.handleClickClosePhoto()}
-            onKeyPress={this.handleKeyPress}
-          />
-        ) : null}
-      </div>
+      <GalleryRow
+        key={i}
+        rowNumber={i}
+        size={size}
+        photos={photos}
+        onClick={(x) => setCurrentImg(x)}
+      />
     );
-  }
+  });
+
+  return (
+    <div className='gallery container'>
+      {isLoading ? (
+        <div>Loading ...</div>
+      ) : (
+        <div>
+          <div className='frame gallery module last-used-module'>
+            {isError && <div>Something went wrong ...</div>}
+            <h1 className='UI'>{moduleName}</h1>
+            {rowsComponents}
+          </div>
+          {isOpenZoom ? (
+            <GalleryPhotoZoom
+              index={currentImg}
+              imgUrl={currentImgUrl}
+              updatePhoto={(i) => setCurrentImg(i)}
+              onClick={() => {
+                setIsOpenZoom(false);
+              }}
+              maxIndex={photos.length}
+            />
+          ) : null}
+        </div>
+      )}
+    </div>
+  );
 }

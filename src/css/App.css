@@ -291,7 +291,6 @@ h1.UI {
   font-size: 24px;
   font-weight: 600;
   line-height: 31px;
-  letter-spacing: 0.04em;
   text-align: left;
   padding-bottom: 16px;
 }
@@ -316,7 +315,6 @@ p.UI {
 }
 
 p.UI.priority-2 {
-  font-family: "PTRootUIWebRegular", sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 24px;
@@ -324,7 +322,6 @@ p.UI.priority-2 {
   text-align: left;
 }
 p.UI.sub-t1 {
-  font-family: "PTRootUIWebRegular", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -334,7 +331,6 @@ p.UI.sub-t1 {
   margin-bottom: 16px;
 }
 p.UI.sub-t2 {
-  font-family: "PTRootUIWebRegular", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

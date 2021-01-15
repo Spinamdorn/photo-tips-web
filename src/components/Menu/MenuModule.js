@@ -19,22 +19,19 @@ function MenuModule(props) {
     switch (countLessons % 10) {
       case 1:
         return "урок";
-        break;
       case 2:
       case 3:
       case 4:
         return "урока";
-        break;
       default:
         return "уроков";
-        break;
     }
   };
   const lessonContent = module.entries.map((subpart) => {
     return (
       <li>
         <MenuModuleLesson
-          key={module.indexNumber + "_" + subpart.id}
+          key={module.indexNumber.toString() + subpart.id.toString()}
           lesson={subpart}
           moduleNumber={module.indexNumber}
         />

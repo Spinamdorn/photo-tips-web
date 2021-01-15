@@ -3,6 +3,7 @@ import GalleryPhoto from "./GalleryPhoto";
 
 function GalleryRow(props) {
   var startIndex = props.size * props.rowNumber;
+
   var photosComponents = props.photos
     .slice(0 + startIndex, props.size + startIndex)
     .map((subpart) => {
@@ -10,8 +11,9 @@ function GalleryRow(props) {
         <GalleryPhoto
           key={subpart.id}
           id={subpart.id}
-          imgUrl={subpart.imgUrl}
-          onClick={() => props.onClick(subpart.id, subpart.imgUrl)}
+          index={subpart.indexNumber}
+          imgUrl={subpart.fileUrl}
+          onClick={() => props.onClick(subpart.indexNumber)}
         />
       );
     });
