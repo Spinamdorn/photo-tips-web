@@ -26,16 +26,16 @@ function App() {
       <Header isLogin={token} />
 
       <Switch>
-        <Route path='/gallery'>
+        <Route path='/photo-tips-web/gallery'>
           <Gallery token={token} />
         </Route>
-        <Route path='/account'>
+        <Route path='/photo-tips-web/account'>
           <Account token={token} setToken={setToken} />
         </Route>
-        <Route path='/lecture/:lessonId'>
+        <Route path='/photo-tips-web/lecture/:lessonId'>
           <Lecture />
         </Route>
-        <Route path='/' component={Menu} />
+        <Route path='/photo-tips-web/' component={Menu} />
       </Switch>
     </div>
   );

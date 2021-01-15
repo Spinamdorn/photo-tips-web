@@ -5,13 +5,13 @@ function Header(props) {
   var btnValue = props.isLogin ? "Аккаунт" : "Войти";
   return (
     <header>
-      <Link to='/'>
+      <Link to='/photo-tips-web/'>
         <img className='logo' src={logo} alt='logo'></img>
       </Link>
       <nav>
         <ul className='nav-menu'>
           <li>
-            <Link to='/lecture/1'>
+            <Link to='/photo-tips-web/lecture/1'>
               <button className='btn-text-icon'>
                 <div className='btn-icon course'></div>
                 Курс
@@ -19,7 +19,7 @@ function Header(props) {
             </Link>
           </li>
           <li>
-            <Link to='/gallery'>
+            <Link to='/photo-tips-web/gallery'>
               <button className='btn-text-icon'>
                 <div className='btn-icon gallery'></div>
                 Галерея
@@ -29,7 +29,7 @@ function Header(props) {
         </ul>
       </nav>
       <div className='log_in'>
-        <Link to='/account'>
+        <Link to='/photo-tips-web/account'>
           <button>{btnValue}</button>
         </Link>
       </div>
