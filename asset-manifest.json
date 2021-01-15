@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/photo-tips-web/static/css/main.3f06d8fc.chunk.css",
-    "main.js": "/photo-tips-web/static/js/main.b3ad7c1d.chunk.js",
-    "main.js.map": "/photo-tips-web/static/js/main.b3ad7c1d.chunk.js.map",
+    "main.js": "/photo-tips-web/static/js/main.1af787e9.chunk.js",
+    "main.js.map": "/photo-tips-web/static/js/main.1af787e9.chunk.js.map",
     "runtime-main.js": "/photo-tips-web/static/js/runtime-main.aca0add8.js",
     "runtime-main.js.map": "/photo-tips-web/static/js/runtime-main.aca0add8.js.map",
     "static/js/2.330c8f69.chunk.js": "/photo-tips-web/static/js/2.330c8f69.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.aca0add8.js",
     "static/js/2.330c8f69.chunk.js",
     "static/css/main.3f06d8fc.chunk.css",
-    "static/js/main.b3ad7c1d.chunk.js"
+    "static/js/main.1af787e9.chunk.js"
   ]
 }
