@@ -18,7 +18,6 @@ function Lecture() {
   const { lessonId } = useParams();
   const [lectureType, setLectureType] = useState(LectureType.Text);
   const [lesson, setLesson] = useState({});
-  console.log(window.location.pathname);
   useEffect(() => {
     async function fetchLesson() {
       const response = await fetch(
