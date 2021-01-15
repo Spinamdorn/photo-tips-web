@@ -67,7 +67,7 @@
 
 .module.not-started .icon.module-status {
   background-position: -16px -96px;
-  opacity: 55%;
+  opacity: 0.55;
 }
 
 .module.finish .icon.module-status {
