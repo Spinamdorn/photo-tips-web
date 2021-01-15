@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import userPhoto from "../../images/user_photo.png";
 
-function AccountMainInfo({ name, surname, email }) {
+function AccountMainInfo({ name, surname, email, updateToken }) {
   const [isLogOut, setIsLogOut] = useState(false);
   useEffect(() => {
     if (isLogOut) {
       localStorage.removeItem("token");
-      document.location.reload();
+      updateToken();
       setIsLogOut(false);
     }
-  }, [isLogOut]);
+  }, [isLogOut, updateToken]);
   return (
     <div className='frame main-info'>
       <div className='right-side'>

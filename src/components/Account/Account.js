@@ -125,7 +125,12 @@ export default function Account({ token, setToken }) {
         <div>Loading ...</div>
       ) : (
         <div>
-          <AccountMainInfo name={name} email={email} surname={surname} />
+          <AccountMainInfo
+            name={name}
+            email={email}
+            surname={surname}
+            updateToken={() => setToken("")}
+          />
           <div className='frame full-info'>
             <h2 className='UI'>Персональная информация</h2>
             <form onSubmit={submitUpdateInfo}>
