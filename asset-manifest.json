@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/photo-tips-web/static/css/main.2f101a8f.chunk.css",
-    "main.js": "/photo-tips-web/static/js/main.aaf454dc.chunk.js",
-    "main.js.map": "/photo-tips-web/static/js/main.aaf454dc.chunk.js.map",
+    "main.css": "/photo-tips-web/static/css/main.60f91abf.chunk.css",
+    "main.js": "/photo-tips-web/static/js/main.2cdace9a.chunk.js",
+    "main.js.map": "/photo-tips-web/static/js/main.2cdace9a.chunk.js.map",
     "runtime-main.js": "/photo-tips-web/static/js/runtime-main.aca0add8.js",
     "runtime-main.js.map": "/photo-tips-web/static/js/runtime-main.aca0add8.js.map",
     "static/js/2.330c8f69.chunk.js": "/photo-tips-web/static/js/2.330c8f69.chunk.js",
     "static/js/2.330c8f69.chunk.js.map": "/photo-tips-web/static/js/2.330c8f69.chunk.js.map",
     "index.html": "/photo-tips-web/index.html",
-    "static/css/main.2f101a8f.chunk.css.map": "/photo-tips-web/static/css/main.2f101a8f.chunk.css.map",
+    "static/css/main.60f91abf.chunk.css.map": "/photo-tips-web/static/css/main.60f91abf.chunk.css.map",
     "static/js/2.330c8f69.chunk.js.LICENSE.txt": "/photo-tips-web/static/js/2.330c8f69.chunk.js.LICENSE.txt",
     "static/media/Logo.02ce895c.svg": "/photo-tips-web/static/media/Logo.02ce895c.svg",
     "static/media/App.css": "/photo-tips-web/static/media/icon_web.6f58e2e7.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.aca0add8.js",
     "static/js/2.330c8f69.chunk.js",
-    "static/css/main.2f101a8f.chunk.css",
-    "static/js/main.aaf454dc.chunk.js"
+    "static/css/main.60f91abf.chunk.css",
+    "static/js/main.2cdace9a.chunk.js"
   ]
 }
