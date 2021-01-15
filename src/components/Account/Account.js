@@ -22,7 +22,7 @@ export default function Account({ token, setToken }) {
       setIsError(false);
       setIsLoading(true);
       try {
-        const response = await fetch("http://85.208.208.156:5000/api/user?Token=" + currentToken);
+        const response = await fetch("https://phototips.xyz/api/user?Token=" + currentToken);
         const json = await response.json();
         setName(json.name);
         setSurname(json.surname);
@@ -52,7 +52,7 @@ export default function Account({ token, setToken }) {
       setIsError(false);
       setIsLoading(true);
       try {
-        const response = await fetch("http://85.208.208.156:5000/api/user/updateInfo", {
+        const response = await fetch("https://phototips.xyz/api/user/updateInfo", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

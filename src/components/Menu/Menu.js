@@ -11,7 +11,7 @@ export default class Menu extends Component {
   }
 
   componentDidMount() {
-    fetch("http://85.208.208.156:5000/api/module/listAllIn")
+    fetch("https://phototips.xyz/api/module/listAllIn")
       .then((response) => response.json())
       .then((data) => {
         this.setState({

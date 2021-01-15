@@ -4,7 +4,7 @@ export default function LessonImg({ content }) {
   if (!content) {
     return <div></div>;
   }
-  var src = "http://85.208.208.156:5000/" + content;
+  var src = "https://phototips.xyz/" + content;
   return (
     <div>
       <div className='lesson-img'>

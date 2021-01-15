@@ -23,7 +23,7 @@ function SignUp({ setToken, onClick }) {
       setIsError(false);
       setIsLoading(true);
       try {
-        let response = await fetch("http://85.208.208.156:5000/api/user/create", {
+        let response = await fetch("https://phototips.xyz/api/user/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

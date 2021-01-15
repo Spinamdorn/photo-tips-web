@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 async function loginUser(credentials) {
   var value = "?Email=" + credentials["username"] + "&Password=" + credentials["password"];
-  var url = "http://85.208.208.156:5000/api/user/token";
+  var url = "https://phototips.xyz/api/user/token";
   let response = await fetch(url + value, {
     headers: {
       "Content-Type": "text/plain",

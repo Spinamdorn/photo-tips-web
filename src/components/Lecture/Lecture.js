@@ -22,7 +22,7 @@ function Lecture() {
   useEffect(() => {
     async function fetchLesson() {
       const response = await fetch(
-        "http://85.208.208.156:5000/api/module_entry?ModuleEntryId=" + lessonId
+        "https://phototips.xyz/api/module_entry?ModuleEntryId=" + lessonId
       );
       const json = await response.json();
       setLesson(json);
