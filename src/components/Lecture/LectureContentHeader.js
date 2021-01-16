@@ -9,7 +9,7 @@ const LectureType = {
 function LectureContentHeader(props) {
   return (
     <header>
-      <Link to='/' style={{ textDecoration: "none", background: "none" }}>
+      <Link to='/photo-tips-web/' style={{ textDecoration: "none", background: "none" }}>
         <button className='btn-text-icon'>
           <div className='btn-icon course'></div>К курсу
         </button>
