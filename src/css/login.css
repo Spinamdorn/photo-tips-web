@@ -122,8 +122,3 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #2a8fed;
 }
-
-input:focus {
-  outline: none;
-  border: 1px solid #167bd9;
-}

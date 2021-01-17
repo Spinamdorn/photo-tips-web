@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from "react";
+import AdminSendComment from "./AdminSendComment";
+import UserReadComment from "./UserReadComment";
 
-export default function GalleryPhotoZoom({ index, imgUrl, onClick, updatePhoto, maxIndex }) {
+export default function GalleryPhotoZoom({
+  img,
+  onClick,
+  updatePhoto,
+  maxIndex,
+  isAdmin,
+  updateComment,
+}) {
+  var index = img.indexNumber;
+  var imgUrl = img.fileUrl;
   var imgName = `IMG-${index}.jpeg`;
   var prevPhoto = index > 0 ? index - 1 : maxIndex - 1;
   var nextPhoto = index < maxIndex - 1 ? index + 1 : 0;
+  const [inputMode, setInputMode] = useState(false);
 
   useEffect(() => {
     function handleKeyPress(event) {
-      event.preventDefault();
       switch (event.key) {
         case "Left": // IE/Edge specific value
         case "ArrowLeft":
-          updatePhoto(prevPhoto);
+          if (!inputMode) {
+            updatePhoto(prevPhoto);
+          }
           break;
         case "Right": // IE/Edge specific value
         case "ArrowRight":
-          updatePhoto(nextPhoto);
+          if (!inputMode) {
+            updatePhoto(nextPhoto);
+          }
           break;
         case "Esc": // IE/Edge specific value
         case "Escape":
@@ -27,8 +42,9 @@ export default function GalleryPhotoZoom({ index, imgUrl, onClick, updatePhoto, 
       }
     }
     window.addEventListener("keydown", handleKeyPress);
+    // event.preventDefault();
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [nextPhoto, prevPhoto, onClick, updatePhoto]);
+  }, [nextPhoto, prevPhoto, onClick, updatePhoto, inputMode]);
   return (
     <div id='modal' className='modal'>
       <div className='photo-zoom'>
@@ -64,6 +80,14 @@ export default function GalleryPhotoZoom({ index, imgUrl, onClick, updatePhoto, 
                 ƒ/1,8 1/30 4,25&nbsp;мм ISO&nbsp;130
               </p>
             </div>
+          </div>
+          <div className='feedback'>
+            <h2 className='UI'>Обратная связь</h2>
+            {isAdmin ? (
+              <AdminSendComment img={img} isInput={setInputMode} updateComment={updateComment} />
+            ) : (
+              <UserReadComment img={img} />
+            )}
           </div>
         </div>
       </div>

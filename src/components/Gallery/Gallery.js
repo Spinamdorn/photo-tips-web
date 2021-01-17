@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GalleryRow from "./GalleryRow";
+import GalleryGrid from "./GalleryGrid";
 import GalleryPhotoZoom from "./GalleryPhotoZoom";
 import "../../css/gallery.css";
 
@@ -8,24 +8,25 @@ export default function Gallery({ token }) {
   const [isError, setIsError] = useState(false);
   var moduleName = "Ваши фотографии";
   const size = 5;
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllPhoto, setIsAllPhoto] = useState(true);
   const [rowNumbers, setRowNumbers] = useState([0]);
   const [photos, setPhotos] = useState([]);
+  const [newPhotos, setNewPhotos] = useState([]);
+  const [currentList, setCurentList] = useState([]);
   const [isOpenZoom, setIsOpenZoom] = useState(false);
-  const [currentImg, setCurrentImg] = useState(-2);
-  const [currentImgUrl, setCurrentImgUrl] = useState();
+  const [currentImg, setCurrentImg] = useState(0);
+  const [updateComment, setUpdateComment] = useState();
+  const [newImgIndex, setNewImgIndex] = useState(-2);
   const filePath = "https://phototips.xyz/";
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
       setIsLoading(true);
       try {
-        const response = await fetch("https://phototips.xyz/api/photo/listBy?UserToken=" + token);
+        const response = await fetch("https://phototips.xyz/api/user?Token=" + token);
         const json = await response.json();
-        setPhotos(
-          json.map((i, j) => {
-            return { indexNumber: j, id: i.id, fileUrl: filePath + i.fileUrl };
-          })
-        );
+        setIsAdmin(json.isAdmin);
         setIsLoading(false);
       } catch (error) {
         setIsError(true);
@@ -35,37 +36,117 @@ export default function Gallery({ token }) {
   }, [token]);
 
   useEffect(() => {
-    var countPhotos = photos.length;
+    async function fetchData(url) {
+      setIsError(false);
+      setIsLoading(true);
+      try {
+        const response = await fetch(url + token);
+        const json = await response.json();
+        setPhotos(
+          json.map((i, j) => {
+            return {
+              indexNumber: j,
+              id: i.id,
+              fileUrl: filePath + i.photo?.fileUrl,
+              thumbnailUrl: filePath + i.photo?.thumbnailUrl,
+              status: i.status,
+              comment: i.comment,
+              mark: i.mark,
+            };
+          })
+        );
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+      }
+    }
+    var url = isAdmin
+      ? "https://phototips.xyz/api/submission/listAllBy?AdminToken="
+      : "https://phototips.xyz/api/submission/listBy?UserToken=";
+    fetchData(url);
+  }, [token, isAdmin]);
+
+  useEffect(() => {
+    setNewPhotos(photos.filter((photo) => photo.status === "Checking"));
+  }, [photos]);
+  useEffect(() => {
+    if (isAllPhoto) {
+      setCurentList(photos);
+    } else {
+      setCurentList(newPhotos);
+    }
+  }, [isAllPhoto, photos, newPhotos]);
+
+  useEffect(() => {
+    var countPhotos = currentList.length;
     var countRows = Math.ceil(countPhotos / size);
     var newRows = Array.apply(null, { length: countRows }).map(Number.call, Number);
     setRowNumbers(newRows);
-  }, [photos]);
+  }, [currentList]);
 
   useEffect(() => {
-    if ((currentImg > -1) & (currentImg < photos.length)) {
-      setIsOpenZoom(true);
-      setCurrentImgUrl(photos[currentImg].fileUrl);
+    if (newImgIndex > -1 && newImgIndex < photos.length) {
+      setCurrentImg(photos[newImgIndex]);
     }
-  }, [currentImg, photos]);
+  }, [newImgIndex, photos]);
+
+  useEffect(() => {
+    if (currentImg) {
+      setIsOpenZoom(true);
+    }
+  }, [currentImg]);
+
+  useEffect(() => {
+    if (updateComment) {
+      var foundIndex = photos.findIndex((x) => x.id === updateComment.id);
+      var oldData = photos[foundIndex];
+      var newData = {
+        ...oldData,
+        comment: updateComment.comment,
+        mark: updateComment.mark,
+        status: updateComment.status,
+      };
+      photos[foundIndex] = newData;
+    }
+  }, [updateComment, photos]);
 
   useEffect(() => {
     if (!isOpenZoom) {
-      setCurrentImg(-2);
+      setCurrentImg(0);
     }
   }, [isOpenZoom]);
 
-  var rowsComponents = rowNumbers.map((i) => {
-    return (
-      <GalleryRow
-        key={i}
-        rowNumber={i}
-        size={size}
-        photos={photos}
-        onClick={(x) => setCurrentImg(x)}
-      />
-    );
-  });
-
+  var header = isAdmin ? (
+    <header>
+      <h1 className='UI'>Фотографии студентов</h1>
+      <div className='tabs'>
+        <ul>
+          <li>
+            <button
+              className={`no-brdr ${isAllPhoto ? "active" : ""}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsAllPhoto(true);
+              }}>
+              Все фотографии
+            </button>
+          </li>
+          <li>
+            <button
+              className={`no-brdr ${!isAllPhoto ? "active" : ""}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsAllPhoto(false);
+              }}>
+              Новые фотографии
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
+  ) : (
+    <h1 className='UI'>{moduleName}</h1>
+  );
   return (
     <div className='gallery container'>
       {isLoading ? (
@@ -74,18 +155,30 @@ export default function Gallery({ token }) {
         <div>
           <div className='frame gallery module last-used-module'>
             {isError && <div>Something went wrong ...</div>}
-            <h1 className='UI'>{moduleName}</h1>
-            {rowsComponents}
+            {photos.length < 1 ? (
+              <h1 className='UI'>Вы еще не сделали ни одной фотографии</h1>
+            ) : (
+              <div>
+                {header}
+                {/* {rowsComponentsAll} */}
+                <GalleryGrid
+                  source={currentList}
+                  rowNumbers={rowNumbers}
+                  setCurrentImg={setCurrentImg}
+                />
+              </div>
+            )}
           </div>
           {isOpenZoom ? (
             <GalleryPhotoZoom
-              index={currentImg}
-              imgUrl={currentImgUrl}
-              updatePhoto={(i) => setCurrentImg(i)}
+              img={currentImg}
+              updatePhoto={(i) => setNewImgIndex(i)}
+              updateComment={setUpdateComment}
               onClick={() => {
                 setIsOpenZoom(false);
               }}
               maxIndex={photos.length}
+              isAdmin={isAdmin}
             />
           ) : null}
         </div>

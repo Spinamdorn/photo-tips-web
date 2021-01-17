@@ -11,6 +11,7 @@ export default function Account({ token, setToken }) {
   const [surname, setSurname] = useState();
   const [email, setEmail] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
+  const [isAdmin, setIsAdmin] = useState(false);
   const [newInfo, setNewInfo] = useState({
     token: currentToken,
     name: name,
@@ -30,6 +31,7 @@ export default function Account({ token, setToken }) {
         setSurname(json.surname !== "string" ? json.surname : "");
         setEmail(json.email !== "string" ? json.email : "");
         setPhoneNumber(json.phoneNumber ? json.phoneNumber : "");
+        setIsAdmin(json.isAdmin);
         setIsLoading(false);
       } catch (error) {
         setIsError(true);
@@ -129,6 +131,7 @@ export default function Account({ token, setToken }) {
             name={name}
             email={email}
             surname={surname}
+            isAdmin={isAdmin}
             updateToken={() => setToken("")}
           />
           <div className='frame full-info'>
@@ -142,6 +145,7 @@ export default function Account({ token, setToken }) {
                 type='text'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className='light'
               />
               <label htmlFor='userSurname'>
                 <p className='UI caption'>Фамилия</p>
@@ -151,6 +155,7 @@ export default function Account({ token, setToken }) {
                 type='text'
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
+                className='light'
               />
               <label htmlFor='userPhone'>
                 <p className='UI caption'>Номер телефона</p>
@@ -160,6 +165,7 @@ export default function Account({ token, setToken }) {
                 type='text'
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                className='light'
               />
               {isError && <div>Something went wrong ...</div>}
               <input type='submit' value='Сохранить' />
@@ -176,6 +182,7 @@ export default function Account({ token, setToken }) {
                 type='password'
                 autoComplete='current-password'
                 onChange={(e) => setOldPassword(e.target.value)}
+                className='light'
               />
               <label htmlFor='newPassword'>
                 <p className='UI caption'>Новый пароль</p>
@@ -185,6 +192,7 @@ export default function Account({ token, setToken }) {
                 type='password'
                 autoComplete='new-password'
                 onChange={(e) => setNewPassword(e.target.value)}
+                className='light'
               />
               {isError && <div>Something went wrong ...</div>}
               <input type='submit' value='Изменить пароль' />

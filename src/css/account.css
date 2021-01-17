@@ -45,21 +45,6 @@ h2 {
   width: 443px;
 }
 
-.account input {
-  margin-bottom: 16px;
-  border: none;
-  border-bottom: 1px solid #cdcdcd;
-  background: none;
-  height: 32px;
-  padding: 0;
-  display: inline-block;
-  font-family: "PTRootUIWebRegular", sans-serif;
-  font-size: 18px;
-  line-height: 24px;
-  color: #282828;
-  opacity: 1;
-}
-
 form p {
   color: #878787;
 }

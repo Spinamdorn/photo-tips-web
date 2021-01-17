@@ -11,9 +11,8 @@ function GalleryRow(props) {
         <GalleryPhoto
           key={subpart.id}
           id={subpart.id}
-          index={subpart.indexNumber}
-          imgUrl={subpart.fileUrl}
-          onClick={() => props.onClick(subpart.indexNumber)}
+          imgUrl={subpart.thumbnailUrl}
+          onClick={() => props.onClick(subpart)}
         />
       );
     });

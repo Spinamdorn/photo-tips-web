@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import userPhoto from "../../images/user_photo.png";
 
-function AccountMainInfo({ name, surname, email, updateToken }) {
+function AccountMainInfo({ name, surname, email, updateToken, isAdmin }) {
   const [isLogOut, setIsLogOut] = useState(false);
   useEffect(() => {
     if (isLogOut) {
@@ -17,6 +17,7 @@ function AccountMainInfo({ name, surname, email, updateToken }) {
         <div>
           <h2 className='UI'>{name + " " + surname}</h2>
           <p className='UI email'>{email}</p>
+          {isAdmin ? <p className='UI'>Преподаватель</p> : ""}
         </div>
       </div>
       <button
